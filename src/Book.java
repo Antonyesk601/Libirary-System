@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Books
+public class Book
 {
 	// Data Attributes
 	
@@ -9,17 +9,17 @@ public class Books
 	private int issueQuan;
 	private String bookName;
 	private String bookAuthor;
-    public int index = -1;
+    public static int index = -1;
 	
-	private static ArrayList<Books> bookList = new ArrayList<>();
+	private static ArrayList<Book> bookList = new ArrayList<>();
 	
 	// Methods
 
-    public Books()
+    public Book()
     {
     }
 
-    public Books(int ID, int avail, int issue, String name, String author)
+    public Book(int ID, int avail, int issue, String name, String author)
     {
         bookID = ID;
         availQuan = avail;
@@ -58,14 +58,14 @@ public class Books
         return ("Book ID: " + bookID + "\tBook name: " + bookName + "\tBook Author: " + bookAuthor + "\tAvailable Quantity: " + availQuan + "\tIssued Quantity: " + issueQuan);
     }
 
-    public void addBook(int ID, int avail, int issue, String name, String author)
+    public static void addBook(int ID, int avail, int issue, String name, String author)
     {
-        Books newBook = new Books(ID, avail, issue, name, author);
+        Book newBook = new Book(ID, avail, issue, name, author);
         bookList.add(newBook);
         index++;
     }
 
-    public void removeBook(int ID)
+    public static void removeBook(int ID)
     {
         int found = 0;
 
@@ -91,7 +91,7 @@ public class Books
         }
     }
 
-    public void issueBook(int ID)
+    public static void issueBook(int ID)
     {
         int found = 0;
 
@@ -117,7 +117,7 @@ public class Books
         }
     }
 
-    public void returnBook(int ID)
+    public static void returnBook(int ID)
     {
         int found = 0;
 
@@ -143,7 +143,7 @@ public class Books
         }
     }
 
-    public void increaseQuan(int ID, int extraQuan)
+    public static void  increaseQuan(int ID, int extraQuan)
     {
         int found = 0;
 
@@ -167,7 +167,7 @@ public class Books
         }
     }
 
-    public void getDetails(int ID)
+    public static void getDetails(int ID)
     {
         int found = 0;
 
@@ -190,8 +190,12 @@ public class Books
             System.out.println("The book with the entered ID cannot be found     ->     Please make sure the ID is correct and try again.");
         }
     }
+    public static Book getBook(int o_ID)
+    {
+        return null;
+    }
 
-    public void displayList()
+    public static void displayList()
     {
         for (int i=0; i<=index; i++)
         {
@@ -201,24 +205,24 @@ public class Books
 
     public static void main(String[] args)
     {
-         Books books = new Books();
+        Book books = new Book();
 
         books.addBook(2987, 23, 7, "The Cruel Prince", "Unknown bardo");
         books.addBook(546, 23, 7, "The Wicked King", "To be Found.Mclain");
 
-        System.out.println(Books.bookList.get(0).toString());
-        System.out.println(Books.bookList.get(1).toString());
+        System.out.println(Book.bookList.get(0).toString());
+        System.out.println(Book.bookList.get(1).toString());
 
         books.removeBook(2987);
 
         books.issueBook(546);
-        System.out.println(Books.bookList.get(0).toString());
+        System.out.println(Book.bookList.get(0).toString());
 
         books.returnBook(546);
-        System.out.println(Books.bookList.get(0).toString());
+        System.out.println(Book.bookList.get(0).toString());
 
         books.increaseQuan(546, 34);
-        System.out.println(Books.bookList.get(0).toString());
+        System.out.println(Book.bookList.get(0).toString());
 
         books.getDetails(546);
 

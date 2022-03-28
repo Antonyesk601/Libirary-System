@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Admins
+public class Admin
 {
     // Data Attributes
     private int adminID;
@@ -8,13 +8,13 @@ public class Admins
     private String adminPassword;
     private int index = -1;
 
-    private static ArrayList<Admins> adminList = new ArrayList<>();
+    private static ArrayList<Admin> adminList = new ArrayList<>();
 
-    public Admins()
+    public Admin()
     {
     }
 
-    public Admins(int ID, String name, String password)
+    public Admin(int ID, String name, String password)
     {
         adminID = ID;
         adminName = name;
@@ -38,7 +38,7 @@ public class Admins
 
     public void addAdmin(int ID, String name, String password)
     {
-        Admins newAdmin = new Admins(ID, name, password);
+        Admin newAdmin = new Admin(ID, name, password);
         adminList.add(newAdmin);
         index++;        
     }
@@ -82,7 +82,7 @@ public class Admins
 
     public static void main(String[] args)
     {
-        Admins admin = new Admins();
+        Admin admin = new Admin();
 
         admin.addAdmin(2345, "Julia", "Lola@123452");
         admin.addAdmin(564, "Huda", "jasper@001");

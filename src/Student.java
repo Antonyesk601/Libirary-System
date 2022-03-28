@@ -3,8 +3,42 @@ import java.util.HashMap;
 
 public class Student {
     private static HashMap<Integer,Student> s_Students; 
-    public static void addStudent(int o_ID, String o_Name, Date o_BDay, String o_Email, String o_PhoneNumber)
+    
+    public static void addStudent(Student o_Student, String o_CallerID)
     {
+        //Check Librarian class for similar suggesstions 
+        // 
+
+        if(s_Students==null)
+            s_Students = new HashMap<Integer,Student>();
+        if(s_Students.get(o_Student.getID())!=null)
+        {
+            System.out.println("Duplicate ID, Cant have Multiple students with the same ID\nCouldn't Create Student Instance");
+            return;
+        }
+        for(char l:o_Student.getName().toCharArray())
+        {
+            if(!Character.isAlphabetic(l))
+            {
+                System.out.println("Name Invalid, Cant have non alphabetical characters in name\nCouldn't Create Student Instance");
+                return;
+            }
+        }
+        for(char  l  : o_Student.getPhoneNumber().toCharArray())
+        {
+            if(!Character.isDigit(l))
+            {
+                System.out.println("Phone Number Invalid, Cant have non digit characters in phone number\nCouldn't Create Student Instance");
+                return;
+            }
+        }
+        s_Students.put(o_Student.getID(),o_Student);   
+    }
+    public static void addStudent(int o_ID, String o_Name, Date o_BDay, String o_Email, String o_PhoneNumber, String o_CallerID)
+    {
+        //Check Librarian class for similar suggesstions 
+        // 
+
         if(s_Students==null)
             s_Students = new HashMap<Integer,Student>();
         if(s_Students.get(o_ID)!=null)
@@ -72,7 +106,7 @@ public class Student {
     public void setPhoneNumber(String o_PhoneNumber) {
         this.m_PhoneNumber = o_PhoneNumber;
     }
-    private Student(int o_ID, String o_Name, Date o_BDay, String o_Email, String o_PhoneNumber) {
+    public Student(int o_ID, String o_Name, Date o_BDay, String o_Email, String o_PhoneNumber) {
         this.m_ID = o_ID;
         this.m_Name = o_Name;
         this.m_BDay = o_BDay;
