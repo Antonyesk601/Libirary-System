@@ -76,6 +76,7 @@ public class Books
                 bookList.remove(i);
                 index--;
                 found = 1;
+                break;
             }
 
             else
@@ -190,6 +191,14 @@ public class Books
         }
     }
 
+    public void displayList()
+    {
+        for (int i=0; i<=index; i++)
+        {
+            System.out.println(bookList.get(i).toString());
+        }
+    }
+
     public static void main(String[] args)
     {
          Books books = new Books();
@@ -212,5 +221,9 @@ public class Books
         System.out.println(Books.bookList.get(0).toString());
 
         books.getDetails(546);
+
+        System.out.println("NEW");
+
+        books.displayList();
     }
 }
