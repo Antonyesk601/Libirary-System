@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Admin
+public class Admins
 {
     // Data Attributes
     private int adminID;
@@ -8,13 +8,13 @@ public class Admin
     private String adminPassword;
     private int index = -1;
 
-    private static ArrayList<Admin> adminList = new ArrayList<>();
+    private static ArrayList<Admins> adminList = new ArrayList<>();
 
-    public Admin()
+    public Admins()
     {
     }
 
-    public Admin(int ID, String name, String password)
+    public Admins(int ID, String name, String password)
     {
         adminID = ID;
         adminName = name;
@@ -38,9 +38,17 @@ public class Admin
 
     public void addAdmin(int ID, String name, String password)
     {
-        Admin newAdmin = new Admin(ID, name, password);
-        adminList.add(newAdmin);
-        index++;        
+        if(this.checkName(name))
+        {
+            Admins newAdmin = new Admins(ID, name, password);
+            adminList.add(newAdmin);
+            index++;
+        }
+        else
+        {
+            System.out.println("Name Invalid, Cant have non alphabetical characters in name\nCouldn't Create Admin Instance");
+        }
+                
     }
 
     public void removeAdmin(int ID)
@@ -75,6 +83,38 @@ public class Admin
         }
     }
 
+    public void addStudent(int ID, String name, String bDay, String email, String phoneNumber, String callerID)
+    {
+        Student.addStudent(ID, name, bDay, email, phoneNumber, callerID);
+    }
+
+    public void removeStudent(int ID)
+    {
+        Student.deleteStudent(ID);
+    }
+
+    public void addLibrarian(int ID,String name, String password,String callerID)
+    {
+        Librarian.addLibrarian(ID, name, password, callerID);
+    }
+
+    public void deleteLibrarian(int ID)
+    {
+        Librarian.deleteLibrarian(ID);
+    }
+
+    public boolean checkName(String name)
+    {
+        for(char l:name.toCharArray())
+        {
+            if(!Character.isAlphabetic(l))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public String toString()
     {
         return ("Admin ID: " + adminID + "\tAdmin name: " + adminName);
@@ -82,11 +122,13 @@ public class Admin
 
     public static void main(String[] args)
     {
-        Admin admin = new Admin();
+        Admins admin = new Admins();
 
-        admin.addAdmin(2345, "Julia", "Lola@123452");
+        admin.addAdmin(2345, "Juli54a", "Lola@123452");
         admin.addAdmin(564, "Huda", "jasper@001");
 
         admin.displayList();
+
+        admin.addStudent(234, "Daniel", "01/07/2007", "Daniel@hotmail.com", "1092834211", "Daniel NU");
     }
 }

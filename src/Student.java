@@ -34,7 +34,7 @@ public class Student {
         }
         s_Students.put(o_Student.getID(),o_Student);   
     }
-    public static void addStudent(int o_ID, String o_Name, Date o_BDay, String o_Email, String o_PhoneNumber, String o_CallerID)
+    public static void addStudent(int o_ID, String o_Name, String o_BDay, String o_Email, String o_PhoneNumber, String o_CallerID)
     {
         //Check Librarian class for similar suggesstions 
         // 
@@ -88,10 +88,10 @@ public class Student {
     public void setName(String o_Name) {
         this.m_Name = o_Name;
     }
-    public Date getBDay() {
+    public String getBDay() {
         return m_BDay;
     }
-    public void setBDay(Date o_BDay) {
+    public void setBDay(String o_BDay) {
         this.m_BDay = o_BDay;
     }
     public String getEmail() {
@@ -106,7 +106,7 @@ public class Student {
     public void setPhoneNumber(String o_PhoneNumber) {
         this.m_PhoneNumber = o_PhoneNumber;
     }
-    public Student(int o_ID, String o_Name, Date o_BDay, String o_Email, String o_PhoneNumber) {
+    public Student(int o_ID, String o_Name, String o_BDay, String o_Email, String o_PhoneNumber) {
         this.m_ID = o_ID;
         this.m_Name = o_Name;
         this.m_BDay = o_BDay;
@@ -115,7 +115,7 @@ public class Student {
     }
     private int m_ID;
     private String m_Name;
-    private Date m_BDay;
+    private String m_BDay;
     private String m_Email;
     private String m_PhoneNumber;
 }

@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.HashSet;
-public class Librarian {
+
+public class Librarian 
+{
     private static HashMap<Integer, Librarian> s_Librarians;
     private static HashSet<String> s_LoginInfo;
     public static void addLibrarian(int o_ID,String o_Name, String o_Password,String o_CallerID)
