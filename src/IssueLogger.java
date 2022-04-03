@@ -37,6 +37,96 @@ public class IssueLogger {
         }
         return;
     }
+    public static ArrayList<Issue> GetIssuesFromStudent(int o_StudentID)
+    {
+        ArrayList<Issue> StudentIssues = new ArrayList<Issue>();
+        for(Issue I : s_Issues)
+        {
+            if(I.getStudent_ID() == o_StudentID)
+                StudentIssues.add(I);
+        }
+        return StudentIssues;
+    }
+    public static ArrayList<Issue> GetIssuesForBook(int o_BookID)
+    {
+        ArrayList<Issue> BookIssues = new ArrayList<Issue>();
+        for(Issue I : s_Issues)
+        {
+            if(I.getBook_ID() == o_BookID)
+                BookIssues.add(I);
+        }
+        return BookIssues;
+    }
+    public static ArrayList<Issue> GetIssues(int o_BookID, int o_StudentID)
+    {
+        ArrayList<Issue> Issues = new ArrayList<Issue>();
+        for(Issue I : s_Issues)
+        {
+            if(I.getBook_ID() == o_BookID&&I.getStudent_ID()==o_StudentID)
+                Issues.add(I);
+        }
+        return Issues;
+    }
+    public static ArrayList<Issue> GetOpenIssuesForBook(int o_BookID)
+    {
+        ArrayList<Issue> openIssues =new ArrayList<Issue>();
+        for(Issue I: GetIssuesForBook(o_BookID))
+        {
+            if (I.isReturned()==false)
+                openIssues.add(I);
+        }
+        return openIssues;
+    }
+    public static ArrayList<Issue> GetOpenIssuesFromStudent( int o_StudentID)
+    {
+        ArrayList<Issue> openIssues =new ArrayList<Issue>();
+        for(Issue I:GetIssuesFromStudent(o_StudentID))
+        {
+            if (I.isReturned()==false)
+                openIssues.add(I);
+        }
+        return openIssues;
+    }
+    public static ArrayList<Issue> GetOpenIssues(int o_BookID, int o_StudentID)
+    {
+        ArrayList<Issue> openIssues =new ArrayList<Issue>();
+        for(Issue I: GetIssues(o_BookID, o_StudentID))
+        {
+            if (I.isReturned()==false)
+                openIssues.add(I);
+        }
+        return openIssues;
+    }
+    public static ArrayList<Issue> GetClosedIssuesForBook(int o_BookID)
+    {
+        ArrayList<Issue> openIssues =new ArrayList<Issue>();
+        for(Issue I: GetIssuesForBook(o_BookID))
+        {
+            if (I.isReturned())
+                openIssues.add(I);
+        }
+        return openIssues;
+    }
+    public static ArrayList<Issue> GetClosedIssuesFromStudent( int o_StudentID)
+    {
+        ArrayList<Issue> openIssues =new ArrayList<Issue>();
+        for(Issue I:GetIssuesFromStudent(o_StudentID))
+        {
+            if (I.isReturned())
+                openIssues.add(I);
+        }
+        return openIssues;
+    }
+    public static ArrayList<Issue> GetClosedIssues(int o_BookID, int o_StudentID)
+    {
+        ArrayList<Issue> openIssues =new ArrayList<Issue>();
+        for(Issue I: GetIssues(o_BookID, o_StudentID))
+        {
+            if (I.isReturned())
+                openIssues.add(I);
+        }
+        return openIssues;
+    }
     public static void MarkIssueAsClosed(Student o_Student, Book o_Book)
     {
         for (Issue issue : s_Issues) {
@@ -50,7 +140,7 @@ public class IssueLogger {
     }
     public static void DisplayIssuedBooks()
     {
-        HashSet<Integer> DisplayedBooks = new HashSet();
+        HashSet<Integer> DisplayedBooks = new HashSet<Integer>();
         for(Issue I : s_Issues)
         {
             if(!DisplayedBooks.contains(I.getBook_ID()))
