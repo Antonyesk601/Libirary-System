@@ -205,29 +205,30 @@ public class Book
 
     public static void main(String[] args)
     {
-        Book books = new Book();
 
-        Book.addBook(2987, 23, 7, "The Cruel Prince", "Unknown bardo");
-        Book.addBook(546, 23, 7, "The Wicked King", "To be Found.Mclain");
+        // Book books = new Book();
 
-        System.out.println(Book.bookList.get(0).toString());
-        System.out.println(Book.bookList.get(1).toString());
+        // Book.addBook(2987, 23, 7, "The Cruel Prince", "Unknown bardo");
+        // Book.addBook(546, 23, 7, "The Wicked King", "To be Found.Mclain");
 
-        Book.removeBook(2987);
+        // System.out.println(Book.bookList.get(0).toString());
+        // System.out.println(Book.bookList.get(1).toString());
 
-        Book.issueBook(546);
-        System.out.println(Book.bookList.get(0).toString());
+        // Book.removeBook(2987);
 
-        Book.returnBook(546);
-        System.out.println(Book.bookList.get(0).toString());
+        // Book.issueBook(546);
+        // System.out.println(Book.bookList.get(0).toString());
 
-        Book.increaseQuan(546, 34);
-        System.out.println(Book.bookList.get(0).toString());
+        // Book.returnBook(546);
+        // System.out.println(Book.bookList.get(0).toString());
 
-        Book.getDetails(546);
+        // Book.increaseQuan(546, 34);
+        // System.out.println(Book.bookList.get(0).toString());
 
-        System.out.println("NEW");
+        // Book.getDetails(546);
 
-        Book.displayList();
+        // System.out.println("NEW");
+
+        // Book.displayList();
     }
 }
