@@ -1,4 +1,3 @@
-import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -147,7 +146,7 @@ public class Librarian
             s_Librarians = new HashMap<Integer,Librarian>();
         if(s_Librarians.get(o_ID)!=null)
         {
-            System.out.println("Duplicate ID, Cant have Multiple students with the same ID\nCouldn't Create Student Instance");
+            System.out.println("Duplicate ID, Cant have Multiple Librarians with the same ID\nCouldn't Create Student Instance");
             return;
         }
         for(char l:o_Name.toCharArray())
@@ -242,6 +241,15 @@ public class Librarian
     public static void ShowIssuedBooks()
     {
         IssueLogger.DisplayIssuedBooks();
+    }
+    public static void ShowLibrarians()
+    {
+        for(Librarian L  : s_Librarians.values())
+            System.out.println(L.toString());
+    }
+    public String toString()
+    {
+        return "Librarian ID: "+ m_ID +"Librarian Name: "+ m_Name;
     }
     public int getID() {
         return m_ID;

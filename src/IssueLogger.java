@@ -150,6 +150,10 @@ public class IssueLogger {
             }
         }
     }
+    public static void AddIssue(Issue o_Issue)
+    {
+        s_Issues.add(o_Issue);
+    }
     private static void MarkIssueAsClosed(Issue o_Issue)
     {
         o_Issue.Return();
