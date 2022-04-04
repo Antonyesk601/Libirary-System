@@ -1,4 +1,3 @@
-import java.util.Date;
 import java.util.HashMap;
 
 public class Student {
@@ -64,6 +63,10 @@ public class Student {
         }
         s_Students.put(o_ID,new Student(o_ID, o_Name, o_BDay, o_Email, o_PhoneNumber));   
     }
+    public static void showStudents()
+    {
+
+    }
     public static Student getStudent(int o_ID)
     {
         if(s_Students==null)
@@ -113,9 +116,15 @@ public class Student {
         this.m_Email = o_Email;
         this.m_PhoneNumber = o_PhoneNumber;
     }
+
     private int m_ID;
     private String m_Name;
     private String m_BDay;
     private String m_Email;
     private String m_PhoneNumber;
+
+    @Override
+    public String toString() {
+        return "Student Name:" + m_Name + ", Email: " + m_Email + ", ID: " + m_ID + ", Birthday: " + m_BDay+ ", Phone Number: " + m_PhoneNumber ;
+    }
 }
