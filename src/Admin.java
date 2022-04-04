@@ -7,14 +7,17 @@ public class Admin
     private int adminID;
     private String adminName;
     private String adminPassword;
-    private static int index = -1;
+    private static int index = -1;  //The index variable is used to keep track of how many books are in the list. 
+                                    //It helps keep track of the elements in the list to help search, or iterate over the list.
 
     private static ArrayList<Admin> adminList = new ArrayList<>();
 
+    // No argument constructor
     public Admin()
     {
     }
 
+    // Parameterized constructor
     public Admin(int ID, String name, String password)
     {
         adminID = ID;
@@ -37,6 +40,11 @@ public class Admin
         return adminPassword;
     }
 
+    /*
+        The add admin method takes the admin's data when called, creates a new object of the book and calls the parameterized constructor
+        the new admin object is then added to the arrayList that stores Admin objects.
+        Before adding the admin, the name is checked to make sure it does not contain any numbers using the checkName method that is defined later in the code.
+    */
     public static void addAdmin(int ID, String name, String password)
     {
         if(Admin.checkName(name))
@@ -52,6 +60,10 @@ public class Admin
                 
     }
 
+    /*
+        The remove admin method takes the admin's ID that should be removed. It then searches the admin list using the for look and 
+        compares the IDs to the entered ID. If it is found, the admin object is deleted from the list using the remove() built in method.
+    */
     public static void removeAdmin(int ID)
     {
         int found = 0;
@@ -76,6 +88,7 @@ public class Admin
         }
     }
 
+    //Prints the admins in the list
     public static void displayList()
     {
         for (int i=0; i<=index; i++)
@@ -84,26 +97,35 @@ public class Admin
         }
     }
 
+    //Takes the data of the student to be added, then calls the static addStudent method that is in the Student class.
     public static void addStudent(int ID, String name, String bDay, String email, String phoneNumber, String callerID)
     {
         Student.addStudent(ID, name, bDay, email, phoneNumber, callerID);
     }
 
+    //Takes the ID of the student to be deleted, then calls the static deleteStudent method that is in the Student class.
     public static void removeStudent(int ID)
     {
         Student.deleteStudent(ID);
     }
 
+    //Takes the data of the librarian to be added, then calls the static addLibrarian method that is in the Librarian class.
     public static void addLibrarian(int ID,String name, String password,String callerID)
     {
         Librarian.addLibrarian(ID, name, password, callerID);
     }
 
+    //Takes the ID of the student to be deleted, then calls the static deleteLibrarian method that is in the Librarian class.
     public static void deleteLibrarian(int ID)
     {
         Librarian.deleteLibrarian(ID);
     }
 
+    /*
+        The checkName method checks whether or not the admin's name entered contains any numbers (hence, invalid), 
+        using the isAlphabetic built in method, which returns true if the char entered is an alphabet. toCharArray is used to convert 
+        the string entered to an array of characters, which assists in making sure that each character in the name is an alphabetic letter.
+    */
     public static boolean checkName(String name)
     {
         for(char l:name.toCharArray())
@@ -116,6 +138,10 @@ public class Admin
         return true;
     }
 
+    /*
+        The checkPassword method is used in the main view. The admin enters the password, and the adminList are searched for the 
+        admin with the same password. If it is found, then the admin proceeds.
+    */
     public boolean checkPassword(String password)
     {
         for (int i=0; i<=index; i++)
@@ -133,37 +159,23 @@ public class Admin
         return false;
     }
 
-    public static int searchAdmins(String password)
+    /*
+        the searchAdmin is a method mainly used in the main view to allow us to get the data of the admin when the password is entered
+    */
+    public static String getAdmin(String password)
     {
         for (int i=0; i<=index; i++)
         {
             if (adminList.get(i).adminPassword.equals(password))
             {
-                return adminList.get(i).adminID;
+                return (adminList.get(i).toString());
             }
             else
             {
                 continue;
             }
         }
-
-       return 0;
-    }
-
-    public static String displayAdmin(int ID)
-    {
-        for (int i=0; i<=index; i++)
-        {
-            if (adminList.get(i).adminID == ID)
-            {
-                return ("Admin ID: " + adminList.get(i).adminID + "\t Admin Name: " + adminList.get(i).adminName);
-            }
-            else
-            {
-                continue;
-            }
-        }
-            return ("The ID entered cannot be found    ->    Please make sure the ID is correct and try again.");
+        return null;
     }
 
     public static void mainView()
@@ -317,8 +329,7 @@ public class Admin
 
         if(admin.checkPassword(passwordCheck))
         {
-            int ID = Admin.searchAdmins(passwordCheck);
-            System.out.println("Welcome!    ->     " + Admin.displayAdmin(ID));
+            System.out.println("Welcome!    ->     "  +  Admin.getAdmin(passwordCheck));
             Admin.mainView();
         }
         else
