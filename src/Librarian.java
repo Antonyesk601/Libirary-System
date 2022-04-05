@@ -81,7 +81,7 @@ public class Librarian
                         int o_Book_ID = Integer.parseInt(inputHandler.nextLine());
                         int o_Student_ID = Integer.parseInt(inputHandler.nextLine());
                         int closedIssuesCount = IssueLogger.GetClosedIssues(o_Book_ID, o_Student_ID).size();
-                        currentlyLoggedIn.ReturnBook(o_Book_ID, o_Student_ID);    
+                        currentlyLoggedIn.ReturnBook(o_Book_ID, o_Student_ID);
                         if(closedIssuesCount+1==IssueLogger.GetClosedIssues(o_Book_ID, o_Student_ID).size())
                             System.out.print("Book Returned Successfully\n");                    
                         else
@@ -97,7 +97,8 @@ public class Librarian
                     {
                         System.out.print("Please Enter the name of the book\n");
                         String o_BookName = inputHandler.nextLine();
-                        Book.searchBook(o_BookName);                    
+                        Book.searchBook(o_BookName);
+
                     }
                     break;
                 case 7:

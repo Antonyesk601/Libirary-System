@@ -233,7 +233,7 @@ public class Book
             {
                 found = 1;
                 commonName.add(bookList.get(i));
-                System.out.println(bookList.get(i).bookName);
+                System.out.println(bookList.get(i).toString());
             }
             else
             {

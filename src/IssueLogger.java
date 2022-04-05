@@ -27,6 +27,8 @@ public class IssueLogger {
     {
         if((Book.getBook(o_Book.getBookID())!=null)&&(Student.getStudent(o_Student.getID())!=null))
         {
+            if(o_Book.getAvail()<=0)
+                return;
             Issue new_Issue = new Issue(++s_Issue_Count, o_Book.getBookID(), o_Student.getID(),false);
             s_Issues.add(new_Issue);
             Book.issueBook(o_Book.getBookID());
@@ -135,8 +137,10 @@ public class IssueLogger {
     }
     public static void MarkIssueAsClosed(Student o_Student, Book o_Book)
     {
+        if(o_Book==null||o_Student==null)
+            return;
         for (Issue issue : s_Issues) {
-            if(issue.getBook_ID()==o_Book.getBookID()&&issue.getStudent_ID()==o_Student.getID())
+            if(issue.getBook_ID()==o_Book.getBookID()&&issue.getStudent_ID()==o_Student.getID()&&!issue.isReturned())
             {
                 MarkIssueAsClosed(issue);
                 return;
@@ -158,6 +162,7 @@ public class IssueLogger {
     }
     public static void AddIssue(Issue o_Issue)
     {
+        s_Issue_Count+=o_Issue.getProcedure_id();
         s_Issues.add(o_Issue);
     }
     private static void MarkIssueAsClosed(Issue o_Issue)

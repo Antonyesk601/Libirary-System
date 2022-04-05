@@ -182,146 +182,133 @@ public class Admin
         return null;
     }
 
-    public static void adminView()
+    public static void adminView(Scanner input)
     {
         System.out.println("\t\t\t ----- Welcome to the Admin's view -----");
-        Scanner inputString = new Scanner(System.in);
+
         System.out.print("Please enter your password to proceed: ");
-        String passwordCheck = inputString.nextLine();
+        String passwordCheck = input.nextLine();
 
         Admin admin = new Admin();
-
+        int choice =-1;
         if(admin.checkPassword(passwordCheck))
         {
             System.out.println("Welcome!    ->     "  +  Admin.getAdmin(passwordCheck));
-            
-        Scanner inputInt = new Scanner(System.in);
-        Scanner inputStr = new Scanner(System.in);
+            while(choice!=8)
+            {
+                System.out.println("Please choose on of the following options: \n 1- Add a new admin \n 2- Delete an admin \n 3- Add a new student \n 4- Delete a student \n 5- Add a new librarian \n 6- Delete a librarian \n 7- Display admin list \n 8- Exit");
+                System.out.print("Please enter your choice ->  ");
+                choice = Integer.parseInt(input.nextLine());
+                switch(choice)
+                {
 
-        System.out.println("Please choose on of the following options: \n 1- Add a new admin \n 2- Delete an admin \n 3- Add a new student \n 4- Delete a student \n 5- Add a new librarian \n 6- Delete a librarian \n 7- Display admin list \n 8- Exit");
-        System.out.print("Please enter your choice ->  ");
-        int choice = inputInt.nextInt();
+                    case 1: 
+                        System.out.println("\t\t*** Adding an admin ***");
 
-        switch(choice)
-        {
-            case 1: 
-                System.out.println("\t\t*** Adding an admin ***");
+                        System.out.print("Enter the new admin's name: ");
+                        String name = input.nextLine();
 
-                System.out.print("Enter the new admin's name: ");
-                String name = inputStr.nextLine();
+                        System.out.print("\nEnter the new admin's ID: ");
+                        int id = Integer.parseInt(input.nextLine());
 
-                System.out.print("\nEnter the new admin's ID: ");
-                int id = inputInt.nextInt();
+                        System.out.print("\nEnter the new admin's Password: ");
+                        String password = input.nextLine();
 
-                System.out.print("\nEnter the new admin's Password: ");
-                String password = inputStr.nextLine();
+                        Admin.addAdmin(id, name, password);
 
-                Admin.addAdmin(id, name, password);
+                        System.out.println("\nAdmin added!");
+                        break;
 
-                System.out.println("\nAdmin added!");
-                adminView();
-                break;
+                    case 2:
+                        System.out.println("\t\t*** Deleting an admin ***");
 
-            case 2:
-                System.out.println("\t\t*** Deleting an admin ***");
+                        System.out.print("Enter the admin's ID: ");
+                        int idtoDelete = Integer.parseInt(input.nextLine());
+                        
+                        Admin.removeAdmin(idtoDelete);
 
-                System.out.print("Enter the admin's ID: ");
-                int idtoDelete = inputInt.nextInt();
-                
-                Admin.removeAdmin(idtoDelete);
+                        System.out.println("\nAdmin deleted!");
+                        break;
 
-                System.out.println("\nAdmin deleted!");
-                adminView();
-                break;
+                    case 3:
+                        System.out.println("\t\t*** Adding a student ***");
 
-            case 3:
-                System.out.println("\t\t*** Adding a student ***");
+                        System.out.print("Enter the new student's name: ");
+                        String nameST = input.nextLine();
 
-                System.out.print("Enter the new student's name: ");
-                String nameST = inputStr.nextLine();
+                        System.out.print("Enter the new student's ID: ");
+                        int idST = Integer.parseInt(input.nextLine());
 
-                System.out.print("Enter the new student's ID: ");
-                int idST = inputInt.nextInt();
+                        System.out.print("Enter the new student's date of birth: ");
+                        String birthDate = input.nextLine();
 
-                System.out.print("Enter the new student's date of birth: ");
-                String birthDate = inputStr.nextLine();
+                        System.out.print("Enter the new student's email: ");
+                        String email = input.nextLine();
 
-                System.out.print("Enter the new student's email: ");
-                String email = inputStr.nextLine();
+                        System.out.print("Enter the new student's phone number: ");
+                        String phone = input.nextLine();
 
-                System.out.print("Enter the new student's phone number: ");
-                String phone = inputStr.nextLine();
+                        addStudent(idST, nameST, birthDate, email, phone);
 
-                addStudent(idST, nameST, birthDate, email, phone);
+                        System.out.println("\nStudent added!");
+                        break;
 
-                System.out.println("\nStudent added!");
-                adminView();
-                break;
+                    case 4:
+                        System.out.println("\t\t*** Deleting a student ***");
+                        System.out.print("Enter the student's ID: ");
+                        int idSTtoDelete =Integer.parseInt(input.nextLine());
+                        
+                        Admin.removeStudent(idSTtoDelete);
 
-            case 4:
-                System.out.println("\t\t*** Deleting a student ***");
-                System.out.print("Enter the student's ID: ");
-                int idSTtoDelete = inputInt.nextInt();
-                
-                Admin.removeStudent(idSTtoDelete);
+                        System.out.println("\nStudent deleted!");
+                        break;
 
-                System.out.println("\nStudent deleted!");
-                adminView();
-                break;
+                    case 5:
+                        System.out.println("\t\t*** Adding a librarian ***");
 
-            case 5:
-                System.out.println("\t\t*** Adding a librarian ***");
+                        System.out.print("Enter the new librarians's name: ");
+                        String nameL = input.nextLine();
 
-                System.out.print("Enter the new librarians's name: ");
-                String nameL = inputStr.nextLine();
+                        System.out.print("Enter the new librarian's ID: ");
+                        int idL = Integer.parseInt(input.nextLine());
 
-                System.out.print("Enter the new librarian's ID: ");
-                int idL = inputInt.nextInt();
+                        System.out.print("Enter the new librarian's password: ");
+                        String passwordL = input.nextLine();
 
-                System.out.print("Enter the new librarian's password: ");
-                String passwordL = inputStr.nextLine();
+                        addLibrarian(idL, nameL, passwordL);
 
-                addLibrarian(idL, nameL, passwordL);
+                        System.out.println("\nLibrarian added!");
+                        break;
 
-                System.out.println("\nLibrarian added!");
-                adminView();
-                break;
+                    case 6:
+                        System.out.println("\t\t*** Deleting a librarian ***");
+                        System.out.print("Enter the librarian's ID: ");
+                        int idLtoDelete = Integer.parseInt(input.nextLine());
+                    
+                        Admin.deleteLibrarian(idLtoDelete);
 
-            case 6:
-                System.out.println("\t\t*** Deleting a librarian ***");
-                System.out.print("Enter the librarian's ID: ");
-                int idLtoDelete = inputInt.nextInt();
-            
-                Admin.deleteLibrarian(idLtoDelete);
+                        System.out.println("\nlibrarian deleted!");
+                        adminView(input);
+                        break;
 
-                System.out.println("\nlibrarian deleted!");
-                adminView();
-                break;
+                    case 7:
+                        Admin.displayList();
+                        break;
 
-            case 7:
-                Admin.displayList();
-                adminView();
-                break;
+                    case 8:
+                        System.out.println("Exiting Admin View....");
+                        break;
 
-            case 8:
-                System.out.println("Exiting Admin View....");
-
-            default:
-                System.out.println("Please enter a valid choice");
-                adminView();
-        } 
-        inputInt.close();
-        inputStr.close();
-
-
+                    default:
+                        System.out.println("Please enter a valid choice");
+                        break;
+                } 
+            }
         }
         else
         {
             System.out.println("\nThe password entered in incorrect, please check your password and try again.");
         }
-
-        inputString.close();
-
     }
 
     public String toString()
@@ -336,8 +323,8 @@ public class Admin
         Admin.addAdmin(1212, "Jasper", "jasper@001");
         Admin.addAdmin(3656, "Rayan", "kiteBYE");
         Admin.addAdmin(1543, "Zayn", "doungher");
-
-        Admin.adminView();
+        Scanner input = new Scanner(System.in);
+        Admin.adminView(input);
 
     }
 }
