@@ -10,23 +10,26 @@ public class LibrarySystem
         DataLoader.LoadIssueTable("Tables/issues.csv");
         DataLoader.LoadLibrarianTable("Tables/librarians.csv");
         DataLoader.LoadStudentTable("Tables/students.csv");
-        System.out.println("Welcome to the Library System. \nIf you are an admin, please click \"a\", if you are a librarian, please click \"l\" to exit and save click \"q\"");
         Scanner input = new Scanner(System.in);
-        char choice = input.next().charAt(0);
-        switch(choice)
+        char choice ='\0';
+        while(choice!='q')
         {
-            case 'a':
-                Admin.main(null);
-                break;
-
-            case 'l':
-                Librarian.LibrarianView();
-                break;
-            case 'q':
-                break;
-            default:
-                System.out.println("Please enter a valid choice.");
-                mainView();
+            System.out.println("Welcome to the Library System. \nIf you are an admin, please click \"a\", if you are a librarian, please click \"l\" to exit and save click \"q\"");
+            choice = input.nextLine().charAt(0);
+            switch(choice)
+            {
+                case 'a':
+                    Admin.adminView(input);
+                    break;
+                case 'l':
+                    Librarian.LibrarianView(input);
+                    break;
+                case 'q':
+                    break;
+                default:
+                    System.out.println("Please enter a valid choice.");
+                    break;
+            }
         }
         input.close();
         DataLoader.WriteAdminTable("Tables/admins.csv");

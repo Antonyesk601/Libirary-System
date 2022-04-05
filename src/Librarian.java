@@ -6,9 +6,8 @@ public class Librarian
     private static HashMap<Integer, Librarian> s_Librarians;
     private static HashSet<String> s_LoginInfo = new HashSet<String>();
     private static Librarian currentlyLoggedIn;
-    public static void LibrarianView()
+    public static void LibrarianView(Scanner inputHandler)
     {
-        Scanner inputHandler = new Scanner (System.in);
         String loginName,loginPassword,retry;
         System.out.print("Enter Your name:\n");
         loginName = inputHandler.nextLine();
@@ -20,30 +19,30 @@ public class Librarian
             retry= inputHandler.nextLine();
             if(retry.toCharArray()[0]=='y'||retry.toCharArray()[0]=='Y')
             {
-                inputHandler.close();
-                return;
+                System.out.print("Enter Your name:\n");
+                loginName = inputHandler.nextLine();
+                System.out.print("Enter your Password:\n");
+                loginPassword = inputHandler.nextLine();
             }
-            System.out.print("Enter Your name:\n");
-            loginName = inputHandler.nextLine();
-            System.out.print("Enter your Password");
-            loginPassword = inputHandler.nextLine();
+            else
+                return;
         }
         int choice = 0;
         System.out.println("Welcome, " + loginName+ "\n please choose an action by entering the number next to the chosen action");
-        System.out.println("1. Add books\n2. Delete books\n3. Issue Books\n4. Return Issued Books\n5. View All Books\n6. Find a book by name\n7. Find a book by ID\n8. Log out");
-        choice = inputHandler.nextInt();
         while(choice!=8)
         {
+            System.out.println("1. Add books\n2. Delete books\n3. Issue Books\n4. Return Issued Books\n5. View All Books\n6. Find a book by name\n7. Find a book by ID\n8. Log out");
+            choice = Integer.parseInt(inputHandler.nextLine());
             switch(choice)
             {
                 case 1:
                     {
-                        System.out.print("Please enter the Book ID, Book Name, Author name, Available Quantity, Issued Quantity\n");
-                        int o_ID = inputHandler.nextInt();
+                        System.out.print("Please enter the Book ID, Book Name, Author name, Available Quantity, Issued Quantity separated by lines\n");
+                        int o_ID = Integer.parseInt(inputHandler.nextLine());
                         String o_BookName = inputHandler.nextLine();
                         String o_BookAuthor = inputHandler.nextLine();
-                        int o_AvailQuan = inputHandler.nextInt();
-                        int o_IssuedQuan = inputHandler.nextInt();
+                        int o_AvailQuan = Integer.parseInt(inputHandler.nextLine());
+                        int o_IssuedQuan = Integer.parseInt(inputHandler.nextLine());
                         Book o_Book = new Book(o_ID,o_AvailQuan,o_IssuedQuan,o_BookName,o_BookAuthor);
                         currentlyLoggedIn.AddBook(o_Book);
                         if(Book.getBook(o_ID)!=null)
@@ -55,7 +54,7 @@ public class Librarian
                 case 2:
                     {
                         System.out.print("Please enter the ID of the book to be deleted\n");
-                        int o_ID = inputHandler.nextInt();
+                        int o_ID = Integer.parseInt(inputHandler.nextLine());
                         currentlyLoggedIn.DeleteBook(o_ID);
                         if(Book.getBook(o_ID)==null)
                             System.out.print("Book Deleted Successfully\n");
@@ -66,8 +65,8 @@ public class Librarian
                 case 3:
                     {
                         System.out.print("Please enter the ID of the book to be issued and the Student ID\n");
-                        int o_Book_ID = inputHandler.nextInt();
-                        int o_Student_ID = inputHandler.nextInt();
+                        int o_Book_ID = Integer.parseInt(inputHandler.nextLine());
+                        int o_Student_ID = Integer.parseInt(inputHandler.nextLine());
                         int issueCount = IssueLogger.GetIssues(o_Book_ID, o_Student_ID).size();
                         currentlyLoggedIn.IssueBook(o_Book_ID, o_Student_ID);
                         if(IssueLogger.GetIssues(o_Book_ID, o_Student_ID).size()==issueCount+1)
@@ -79,8 +78,8 @@ public class Librarian
                 case 4:
                     {
                         System.out.print("Please enter the ID of the book to be issued and the Student ID\n");
-                        int o_Book_ID = inputHandler.nextInt();
-                        int o_Student_ID = inputHandler.nextInt();
+                        int o_Book_ID = Integer.parseInt(inputHandler.nextLine());
+                        int o_Student_ID = Integer.parseInt(inputHandler.nextLine());
                         int closedIssuesCount = IssueLogger.GetClosedIssues(o_Book_ID, o_Student_ID).size();
                         currentlyLoggedIn.ReturnBook(o_Book_ID, o_Student_ID);    
                         if(closedIssuesCount+1==IssueLogger.GetClosedIssues(o_Book_ID, o_Student_ID).size())
@@ -104,7 +103,7 @@ public class Librarian
                 case 7:
                     {    
                         System.out.print("Enter the ID of the book you want to find\n");
-                        int o_Book_ID = inputHandler.nextInt();
+                        int o_Book_ID = Integer.parseInt(inputHandler.nextLine());
                         if(Book.getBook(o_Book_ID)!=null)    
                             System.out.println(Book.getBook(o_Book_ID).toString());
                         else
@@ -114,7 +113,6 @@ public class Librarian
                 case 8:
                     {
                         currentlyLoggedIn = null;
-                        s_Librarians =null;
                         System.out.print("Logged Out\nExiting Librarian View\n");                    
                     }
                     break;
@@ -126,7 +124,7 @@ public class Librarian
             
             }
         }
-        inputHandler.close();
+        // inputHandler.close();
     }
 
     public static HashMap<Integer,Librarian> getLibraryHashMap()

@@ -30,8 +30,8 @@ public class DataLoader {
             while(s.hasNextLine())
             {
                 Line = s.nextLine().trim().split(",");
-                AdminID = Integer.parseInt(Line[0]);
-                AdminName = Line[1].replace("_", " ").trim();
+                AdminID = Integer.parseInt(Line[0].trim());
+                AdminName = Line[1].trim().replace("_", " ").trim();
                 AdminPassword = Line[2].trim();
                 Admin.addAdmin(AdminID, AdminName, AdminPassword);
             }
@@ -103,11 +103,11 @@ public class DataLoader {
             while(s.hasNextLine())
             {
                 Line = s.nextLine().trim().split(",");
-                BookID = Integer.parseInt(Line[0]);
+                BookID = Integer.parseInt(Line[0].trim());
                 BookName = Line[1].replace("_", " ").trim();
                 AuthourName = Line[2].replace("_", " ").trim();
-                AvailableQuantity =Integer.parseInt(Line[3]);
-                IssuedQuantity = Integer.parseInt(Line[4]);
+                AvailableQuantity =Integer.parseInt(Line[3].trim());
+                IssuedQuantity = Integer.parseInt(Line[4].trim());
                 Book.addBook(BookID, AvailableQuantity, IssuedQuantity, BookName, AuthourName);
             }
         }
@@ -174,8 +174,8 @@ public class DataLoader {
             while(s.hasNextLine())
             {
                 Line = s.nextLine().trim().split(",");
-                LibrarianID = Integer.parseInt(Line[0]);
-                LibrarianName = Line[1].replace("_", " ").trim();
+                LibrarianID = Integer.parseInt(Line[0].trim());
+                LibrarianName = Line[1].trim().replace("_", " ").trim();
                 LibrarianPassword = Line[2].trim();
                 Librarian.addLibrarian(LibrarianID, LibrarianName, LibrarianPassword);
             }
@@ -223,7 +223,7 @@ public class DataLoader {
         }
         catch (NullPointerException e)
         {
-            System.out.println("Librarian Table Is null program crashed unexcepectedly");
+            System.out.println("Librarian Table Is null program crashed unexcepectedly"+e);
         }
     }
     public static void LoadIssueTable(String IssuesPath)
@@ -244,10 +244,10 @@ public class DataLoader {
             while(s.hasNextLine())
             {
                 Line = s.nextLine().trim().split(",");
-                ProcedureID = Integer.parseInt(Line[0]);
-                BookID = Integer.parseInt(Line[1]);
-                StudentID = Integer.parseInt(Line[2]);
-                isReturned = Line[3].trim().equals("R");
+                ProcedureID = Integer.parseInt(Line[0].trim());
+                BookID = Integer.parseInt(Line[1].trim());
+                StudentID = Integer.parseInt(Line[2].trim());
+                isReturned = Line[3].trim().equals("true");
                 IssueLogger.AddIssue(new Issue(ProcedureID,BookID,StudentID,isReturned));
             }
         }
