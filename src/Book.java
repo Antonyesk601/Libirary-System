@@ -217,7 +217,7 @@ public class Book
     /* 
         This method takes a string and prints any book name that contains the string entered as well as adds these books to a list.
     */
-    public static void searchName(String bookN)
+    public static void searchBook(String bookN)
     {
         ArrayList<Book> commonName = new ArrayList<>();
         int found = 0;
@@ -240,6 +240,24 @@ public class Book
         {
             System.out.println("No book contains that name, please check the title and try again later.");
         }
+    }
+
+    public static Book getBook(int IDbook)
+    {
+        for (int i = 0; i<=index; i++)
+        {
+            if (bookList.get(i).bookID == IDbook)
+            {
+                return bookList.get(i);
+            }
+
+            else
+            {
+                continue;
+            }
+        }
+
+        return null;
     }
 
     /* 
@@ -268,6 +286,6 @@ public class Book
 
         Book.displayList();
 
-        Book.searchName("The");
+        Book.searchBook("The");
     }
 }

@@ -127,8 +127,18 @@ public class Librarian
         }
         inputHandler.close();
     }
+
+    public static HashMap getLibraryHashMap()
+    {
+        return s_Librarians;
+    }
+
     public static Boolean Login(String o_LoginInfo)
     {
+        if(s_LoginInfo==null)
+        {
+        s_LoginInfo = new HashSet<String>();
+        }
         if(s_LoginInfo.contains(o_LoginInfo))
         {
             currentlyLoggedIn = Librarian.getLibrarian(o_LoginInfo);
@@ -136,6 +146,7 @@ public class Librarian
         }
         return false;
     } 
+
     public static void addLibrarian(int o_ID,String o_Name, String o_Password,String o_CallerID)
     {
         //We could add a check if the caller object has admin priveligies  

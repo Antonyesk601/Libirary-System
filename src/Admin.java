@@ -1,5 +1,4 @@
 import java.util.*;
-import java.lang.*;
 
 public class Admin
 {
@@ -178,8 +177,19 @@ public class Admin
         return null;
     }
 
-    public static void mainView()
+    public static void adminView()
     {
+        System.out.println("\t\t\t ----- Welcome to the Admin's view -----");
+        Scanner inputString = new Scanner(System.in);
+        System.out.print("Please enter your password to proceed: ");
+        String passwordCheck = inputString.nextLine();
+
+        Admin admin = new Admin();
+
+        if(admin.checkPassword(passwordCheck))
+        {
+            System.out.println("Welcome!    ->     "  +  Admin.getAdmin(passwordCheck));
+            
         Scanner inputInt = new Scanner(System.in);
         Scanner inputStr = new Scanner(System.in);
 
@@ -204,7 +214,7 @@ public class Admin
                 Admin.addAdmin(id, name, password);
 
                 System.out.println("\nAdmin added!");
-                mainView();
+                adminView();
                 break;
 
             case 2:
@@ -216,7 +226,7 @@ public class Admin
                 Admin.removeAdmin(idtoDelete);
 
                 System.out.println("\nAdmin deleted!");
-                mainView();
+                adminView();
                 break;
 
             case 3:
@@ -243,7 +253,7 @@ public class Admin
                 addStudent(idST, nameST, birthDate, email, phone, callerID);
 
                 System.out.println("\nStudent added!");
-                mainView();
+                adminView();
                 break;
 
             case 4:
@@ -254,7 +264,7 @@ public class Admin
                 Admin.removeStudent(idSTtoDelete);
 
                 System.out.println("\nStudent deleted!");
-                mainView();
+                adminView();
                 break;
 
             case 5:
@@ -275,7 +285,7 @@ public class Admin
                 addLibrarian(idL, nameL, passwordL, callerIDL);
 
                 System.out.println("\nLibrarian added!");
-                mainView();
+                adminView();
                 break;
 
             case 6:
@@ -286,12 +296,12 @@ public class Admin
                 Admin.deleteLibrarian(idLtoDelete);
 
                 System.out.println("\nlibrarian deleted!");
-                mainView();
+                adminView();
                 break;
 
             case 7:
                 Admin.displayList();
-                mainView();
+                adminView();
                 break;
 
             case 8:
@@ -300,10 +310,19 @@ public class Admin
 
             default:
                 System.out.println("Please enter a valid choice");
-                mainView();
+                adminView();
         } 
         inputInt.close();
         inputStr.close();
+
+
+        }
+        else
+        {
+            System.out.println("\nThe password entered in incorrect, please check your password and try again.");
+        }
+
+        inputString.close();
 
     }
 
@@ -320,23 +339,7 @@ public class Admin
         Admin.addAdmin(3656, "Rayan", "kiteBYE");
         Admin.addAdmin(1543, "Zayn", "doungher");
 
-        System.out.println("\t\t\t ----- Welcome to the Admin's view -----");
-        Scanner inputString = new Scanner(System.in);
-        System.out.print("Please enter your password to proceed: ");
-        String passwordCheck = inputString.nextLine();
+        Admin.adminView();
 
-        Admin admin = new Admin();
-
-        if(admin.checkPassword(passwordCheck))
-        {
-            System.out.println("Welcome!    ->     "  +  Admin.getAdmin(passwordCheck));
-            Admin.mainView();
-        }
-        else
-        {
-            System.out.println("\nThe password entered in incorrect, please check your password and try again.");
-        }
-
-        inputString.close();
     }
 }
