@@ -10,7 +10,12 @@ public class Admin
                                     //It helps keep track of the elements in the list to help search, or iterate over the list.
 
     private static ArrayList<Admin> adminList = new ArrayList<>();
-
+    public static ArrayList<Admin> getAdminList()
+    {
+        if(adminList==null)
+            return null;
+        return adminList;
+    }
     // No argument constructor
     public Admin()
     {
@@ -97,9 +102,9 @@ public class Admin
     }
 
     //Takes the data of the student to be added, then calls the static addStudent method that is in the Student class.
-    public static void addStudent(int ID, String name, String bDay, String email, String phoneNumber, String callerID)
+    public static void addStudent(int ID, String name, String bDay, String email, String phoneNumber)
     {
-        Student.addStudent(ID, name, bDay, email, phoneNumber, callerID);
+        Student.addStudent(ID, name, bDay, email, phoneNumber);
     }
 
     //Takes the ID of the student to be deleted, then calls the static deleteStudent method that is in the Student class.
@@ -109,9 +114,9 @@ public class Admin
     }
 
     //Takes the data of the librarian to be added, then calls the static addLibrarian method that is in the Librarian class.
-    public static void addLibrarian(int ID,String name, String password,String callerID)
+    public static void addLibrarian(int ID,String name, String password)
     {
-        Librarian.addLibrarian(ID, name, password, callerID);
+        Librarian.addLibrarian(ID, name, password);
     }
 
     //Takes the ID of the student to be deleted, then calls the static deleteLibrarian method that is in the Librarian class.
@@ -247,10 +252,7 @@ public class Admin
                 System.out.print("Enter the new student's phone number: ");
                 String phone = inputStr.nextLine();
 
-                System.out.print("Enter the new student's caller ID: ");
-                String callerID = inputStr.nextLine();
-
-                addStudent(idST, nameST, birthDate, email, phone, callerID);
+                addStudent(idST, nameST, birthDate, email, phone);
 
                 System.out.println("\nStudent added!");
                 adminView();
@@ -279,10 +281,7 @@ public class Admin
                 System.out.print("Enter the new librarian's password: ");
                 String passwordL = inputStr.nextLine();
 
-                System.out.print("Enter the new librarian's caller ID: ");
-                String callerIDL = inputStr.nextLine();
-
-                addLibrarian(idL, nameL, passwordL, callerIDL);
+                addLibrarian(idL, nameL, passwordL);
 
                 System.out.println("\nLibrarian added!");
                 adminView();
@@ -305,8 +304,7 @@ public class Admin
                 break;
 
             case 8:
-                System.out.println("Exiting....");
-                System.exit(0);
+                System.out.println("Exiting Admin View....");
 
             default:
                 System.out.println("Please enter a valid choice");

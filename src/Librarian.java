@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Librarian 
 {
     private static HashMap<Integer, Librarian> s_Librarians;
-    private static HashSet<String> s_LoginInfo;
+    private static HashSet<String> s_LoginInfo = new HashSet<String>();
     private static Librarian currentlyLoggedIn;
     public static void LibrarianView()
     {
@@ -12,7 +12,7 @@ public class Librarian
         String loginName,loginPassword,retry;
         System.out.print("Enter Your name:\n");
         loginName = inputHandler.nextLine();
-        System.out.print("Enter your Password");
+        System.out.print("Enter your Password:\n");
         loginPassword = inputHandler.nextLine();
         while(!Librarian.Login(loginName+loginPassword))
         {
@@ -30,7 +30,7 @@ public class Librarian
         }
         int choice = 0;
         System.out.println("Welcome, " + loginName+ "\n please choose an action by entering the number next to the chosen action");
-        System.out.println("1. Add books\n2. Delete books\n 3. Issue Books\n4. Return Issued Books\n5. View All Books\n6. Find a book by name\n 7. Find a book by ID\n8. Log out");
+        System.out.println("1. Add books\n2. Delete books\n3. Issue Books\n4. Return Issued Books\n5. View All Books\n6. Find a book by name\n7. Find a book by ID\n8. Log out");
         choice = inputHandler.nextInt();
         while(choice!=8)
         {
@@ -97,7 +97,8 @@ public class Librarian
                 case 6:
                     {
                         System.out.print("Please Enter the name of the book\n");
-                        String o_BookName = inputHandler.nextLine();                    
+                        String o_BookName = inputHandler.nextLine();
+                        Book.searchBook(o_BookName);                    
                     }
                     break;
                 case 7:
@@ -128,7 +129,7 @@ public class Librarian
         inputHandler.close();
     }
 
-    public static HashMap getLibraryHashMap()
+    public static HashMap<Integer,Librarian> getLibraryHashMap()
     {
         return s_Librarians;
     }
@@ -147,12 +148,8 @@ public class Librarian
         return false;
     } 
 
-    public static void addLibrarian(int o_ID,String o_Name, String o_Password,String o_CallerID)
+    public static void addLibrarian(int o_ID,String o_Name, String o_Password)
     {
-        //We could add a check if the caller object has admin priveligies  
-        //by comparing the caller ID (Name+Password) with the HashSet<String>
-        //LoginInfo in the admin class (I am suggesting you add it)
-        //  
         if(s_Librarians==null)
             s_Librarians = new HashMap<Integer,Librarian>();
         if(s_Librarians.get(o_ID)!=null)

@@ -13,7 +13,12 @@ public class Book
                                   //It helps keep track of the elements in the list to help search, or iterate over the list.
 	
 	private static ArrayList<Book> bookList = new ArrayList<>(); // ArrayList that contains Book objects
-	
+	public static ArrayList<Book> getBookList()
+    {
+        if(bookList==null)
+            return null;
+        return bookList; 
+    }
 	// Methods
 
     public Book()

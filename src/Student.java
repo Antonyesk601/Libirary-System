@@ -1,9 +1,14 @@
 import java.util.HashMap;
 
 public class Student {
-    private static HashMap<Integer,Student> s_Students; 
-    
-    public static void addStudent(Student o_Student, String o_CallerID)
+    private static HashMap<Integer,Student> s_Students = new HashMap<Integer,Student>(); 
+    public static HashMap<Integer,Student> getStudents()
+    {
+        if(s_Students==null)
+            return null;
+        return s_Students;
+    }
+    public static void addStudent(Student o_Student)
     {
         //Check Librarian class for similar suggesstions 
         // 
@@ -33,7 +38,7 @@ public class Student {
         }
         s_Students.put(o_Student.getID(),o_Student);   
     }
-    public static void addStudent(int o_ID, String o_Name, String o_BDay, String o_Email, String o_PhoneNumber, String o_CallerID)
+    public static void addStudent(int o_ID, String o_Name, String o_BDay, String o_Email, String o_PhoneNumber)
     {
         //Check Librarian class for similar suggesstions 
         // 

@@ -7,6 +7,12 @@ public class IssueLogger {
     }
     private static IssueLogger s_logger; 
     private static ArrayList<Issue> s_Issues =  new ArrayList<Issue>();
+    public static ArrayList<Issue> getIssueTable()
+    {
+        if(s_Issues==null)
+            return null;
+        return s_Issues;
+    }
     private static int s_Issue_Count=0;
     public static IssueLogger Logger()
     {
