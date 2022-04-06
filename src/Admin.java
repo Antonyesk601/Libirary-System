@@ -49,19 +49,21 @@ public class Admin
         the new admin object is then added to the arrayList that stores Admin objects.
         Before adding the admin, the name is checked to make sure it does not contain any numbers using the checkName method that is defined later in the code.
     */
-    public static void addAdmin(int ID, String name, String password)
+    public static boolean addAdmin(int ID, String name, String password)
     {
         if(Admin.checkName(name))
         {
             Admin newAdmin = new Admin(ID, name, password);
             adminList.add(newAdmin);
             index++;
+            return true;
+            //System.out.println("\nAdmin added!");
         }
         else
         {
             System.out.println("Name Invalid, Cant have non alphabetical characters in name\nCouldn't Create Admin Instance");
         }
-                
+        return false;     
     }
 
     /*
@@ -214,9 +216,16 @@ public class Admin
                         System.out.print("\nEnter the new admin's Password: ");
                         String password = input.nextLine();
 
-                        Admin.addAdmin(id, name, password);
+                        if (Admin.addAdmin(id, name, password))
+                        {
+                            System.out.println("Admin added!");
+                        }
+                        else
+                        {
+                            System.out.println("Could not add admin due to invalid data. Please check your data and try again later.");
+                        }
 
-                        System.out.println("\nAdmin added!");
+                        
                         break;
 
                     case 2:

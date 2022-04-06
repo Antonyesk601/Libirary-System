@@ -70,9 +70,17 @@ public class Book
     */
     public static void addBook(int ID, int avail, int issue, String name, String author)
     {
-        Book newBook = new Book(ID, avail, issue, name, author);
-        bookList.add(newBook);
-        index++;
+        if (avail>=0)
+        {
+            Book newBook = new Book(ID, avail, issue, name, author);
+            bookList.add(newBook);
+            index++;
+        }
+        else
+        {
+            System.out.println("Available quantity cannot be less than zero. Please try again later.");
+        }
+        
     }
 
     /*
@@ -116,10 +124,18 @@ public class Book
         {
             if (bookList.get(i).bookID == ID)
             {
-                found = 1;
-                bookList.get(i).issueQuan = (bookList.get(i).issueQuan) + 1;
-                bookList.get(i).availQuan = (bookList.get(i).availQuan) - 1;
-                break;
+                if (bookList.get(i).availQuan > 0)
+                {
+                    found = 1;
+                    bookList.get(i).issueQuan = (bookList.get(i).issueQuan) + 1;
+                    bookList.get(i).availQuan = (bookList.get(i).availQuan) - 1;
+                    break;
+                }
+                
+                else
+                {
+                    System.out.println("Not enough quantity, please add more books and try again later.");
+                }
             }
 
             else
@@ -273,6 +289,21 @@ public class Book
         for (int i=0; i<=index; i++)
         {
             System.out.println(bookList.get(i).toString());
+        }
+    }
+
+    public static void checkAvailQuan()
+    {
+        for (int i=0; i<=index; i++)
+        {
+            if (bookList.get(i).availQuan == 0)
+            {
+                System.out.println("There are no more \" " + bookList.get(i).bookName + "\" available. Please add more books.");
+            }
+            else
+            {
+                continue;
+            }
         }
     }
 

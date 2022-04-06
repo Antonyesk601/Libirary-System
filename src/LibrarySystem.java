@@ -5,11 +5,11 @@ public class LibrarySystem
 {
     public static void mainView()
     {
-        DataLoader.LoadAdminTable("RandomTables/admins.csv");
-        DataLoader.LoadBookTable("RandomTables/books.csv");
-        DataLoader.LoadIssueTable("RandomTables/issues.csv");
-        DataLoader.LoadLibrarianTable("RandomTables/librarians.csv");
-        DataLoader.LoadStudentTable("RandomTables/students.csv");
+        DataLoader.LoadAdminTable("C:\\Users\\donia\\Desktop\\Libirary-System\\NormalTables\\admins.csv");
+        DataLoader.LoadBookTable("C:\\Users\\donia\\Desktop\\Libirary-System\\NormalTables\\books.csv");
+        DataLoader.LoadIssueTable("C:\\Users\\donia\\Desktop\\Libirary-System\\NormalTables\\issues.csv");
+        DataLoader.LoadLibrarianTable("C:\\Users\\donia\\Desktop\\Libirary-System\\NormalTables\\librarians.csv");
+        DataLoader.LoadStudentTable("C:\\Users\\donia\\Desktop\\Libirary-System\\NormalTables\\students.csv");
         Scanner input = new Scanner(System.in);
         char choice ='\0';
         while(choice!='q')
@@ -43,11 +43,11 @@ public class LibrarySystem
      */
     public static void saveChanges()
     {
-        DataLoader.WriteAdminTable("RandomTables/admins.csv");
-        DataLoader.WriteBookTable("RandomTables/books.csv");
-        DataLoader.WriteIssueTable("RandomTables/issues.csv");
-        DataLoader.WriteLibrarianTable("RandomTables/librarians.csv");
-        DataLoader.WriteStudentTable("RandomTables/students.csv");
+        DataLoader.WriteAdminTable("C:\\Users\\donia\\Desktop\\Libirary-System\\NormalTables\\admins.csv");
+        DataLoader.WriteBookTable("C:\\Users\\donia\\Desktop\\Libirary-System\\NormalTables\\books.csv");
+        DataLoader.WriteIssueTable("C:\\Users\\donia\\Desktop\\Libirary-System\\NormalTables\\issues.csv");
+        DataLoader.WriteLibrarianTable("C:\\Users\\donia\\Desktop\\Libirary-System\\NormalTables\\librarians.csv");
+        DataLoader.WriteStudentTable("C:\\Users\\donia\\Desktop\\Libirary-System\\NormalTables\\students.csv");
     }
     public static void main(String[] args)
     {
