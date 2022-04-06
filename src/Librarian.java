@@ -55,6 +55,11 @@ public class Librarian
                     {
                         System.out.print("Please enter the ID of the book to be deleted\n");
                         int o_ID = Integer.parseInt(inputHandler.nextLine());
+                        if(Book.getBook(o_ID)==null)
+                        {
+                            System.out.println("Book not Found");
+                            break;
+                        }
                         currentlyLoggedIn.DeleteBook(o_ID);
                         if(Book.getBook(o_ID)==null)
                             System.out.print("Book Deleted Successfully\n");
@@ -153,14 +158,14 @@ public class Librarian
             s_Librarians = new HashMap<Integer,Librarian>();
         if(s_Librarians.get(o_ID)!=null)
         {
-            System.out.println("Duplicate ID, Cant have Multiple Librarians with the same ID\nCouldn't Create Student Instance");
+            System.out.println("Duplicate ID, Cant have Multiple Librarians with the same ID\nCouldn't Create Librarian Instance");
             return;
         }
         for(char l:o_Name.toCharArray())
         {
             if(!Character.isAlphabetic(l))
             {
-                System.out.println("Name Invalid, Cant have non alphabetical characters in name\nCouldn't Create Student Instance");
+                System.out.println("Name Invalid, Cant have non alphabetical characters in name\nCouldn't Create Librarian Instance");
                 return;
             }
         }

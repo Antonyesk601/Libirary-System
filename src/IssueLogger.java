@@ -25,6 +25,9 @@ public class IssueLogger {
     }
     public static void CreateIssueRequest(Book o_Book, Student o_Student)
     {
+
+        if(o_Book==null||o_Student==null)
+            return;
         if((Book.getBook(o_Book.getBookID())!=null)&&(Student.getStudent(o_Student.getID())!=null))
         {
             if(o_Book.getAvail()<=0)
