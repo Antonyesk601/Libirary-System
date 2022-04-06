@@ -43,9 +43,9 @@ public class Librarian
         }
         int choice = 0;
         System.out.println("Welcome, " + loginName+ "\n please choose an action by entering the number next to the chosen action");
-        while(choice!=8)
+        while(choice!=9)
         {
-            System.out.println("1. Add books\n2. Delete books\n3. Issue Books\n4. Return Issued Books\n5. View All Books\n6. Find a book by name\n7. Find a book by ID\n8. Log out");
+            System.out.println("1. Add books\n2. Delete books\n3. Issue Books\n4. Return Issued Books\n5. View All Books\n6. View Currently Issued Books\n7. Find a book by name\n8. Find a book by ID\n9. Log out");
             choice = Integer.parseInt(inputHandler.nextLine());
             switch(choice)
             {
@@ -123,6 +123,12 @@ public class Librarian
                     break;
                 case 6:
                     {
+                        
+                        Librarian.ShowIssuedBooks();
+                    }
+                    break;
+                case 7:
+                    {
                         // Finds all books that contain the substring entered by the user
                         System.out.print("Please Enter the name of the book\n");
                         String o_BookName = inputHandler.nextLine();
@@ -130,7 +136,7 @@ public class Librarian
 
                     }
                     break;
-                case 7:
+                case 8:
                     {    
                         // Finds the book instance that has the ID entered by the user
                         System.out.print("Enter the ID of the book you want to find\n");
@@ -141,7 +147,7 @@ public class Librarian
                             System.out.println("Book Couldn't be found");    
                     }
                     break;
-                case 8:
+                case 9:
                     {
                         // removes the currently logged in Librarian and exits the view
                         currentlyLoggedIn = null;
